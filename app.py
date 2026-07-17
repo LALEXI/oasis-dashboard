@@ -272,10 +272,10 @@ fuel_liters_avoided = baseline_results["fuel_liters"].sum() - season_results["fu
 co2e_avoided_kg = fuel_liters_avoided * DIESEL_CO2_KG_PER_LITER
 
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Diesel Cost", f"PHP {total_hybrid_cost:,.0f}", f"-{savings_pct:.1f}% vs diesel-only")
-col2.metric("Savings", f"PHP {savings_php:,.0f}")
-col3.metric("Solar Used", f"{total_solar_m3:,.0f} m3")
-col4.metric("CO2e Avoided", f"{co2e_avoided_kg:,.0f} kg")
+col1.metric("Diesel Cost", f"PHP {total_hybrid_cost:,.2f}", f"-{savings_pct:.1f}% vs diesel-only")
+col2.metric("Savings", f"PHP {savings_php:,.2f}")
+col3.metric("Solar Used", f"{total_solar_m3:,.2f} m3")
+col4.metric("CO2e Avoided", f"{co2e_avoided_kg:,.2f} kg")
 
 # --- Water level chart ---
 st.subheader("Paddy Water Level vs AWD Safe Zone")
