@@ -301,8 +301,17 @@ st.plotly_chart(fig_energy, use_container_width=True)
 # --- MPC look-ahead: interactive day selector ---
 st.subheader("MPC 7-Day Look-Ahead Plan")
 st.caption("Pick any day to see what the system committed to, and what it tentatively expects for the following week.")
-selected_day = st.slider("Select a day", min_value=1, max_value=int(season_results["day"].max()) - MPC_WINDOW_DAYS + 1,
-                          value=min(60, int(season_results["day"].max())))
+
+max_day = int(season_results["day"].max()) - MPC_WINDOW_DAYS + 1
+if season_results["Q_diesel_m3"].max() > 1e-6:
+    default_day = int(season_results.loc[season_results["Q_diesel_m3"].idxmax(), "day"])
+elif season_results["Q_solar_m3"].max() > 1e-6:
+    default_day = int(season_results.loc[season_results["Q_solar_m3"].idxmax(), "day"])
+else:
+    default_day = max_day // 2
+default_day = min(default_day, max_day)  # keep it within slider bounds
+
+selected_day = st.slider("Select a day", min_value=1, max_value=max_day, value=default_day)
 plan = get_mpc_lookahead_plan(selected_day, weather, season_results)
 
 fig_plan = go.Figure()
