@@ -364,6 +364,14 @@ def get_mpc_lookahead_plan(day_number, weather_df, season_results, cfg, window_d
     result = solve_mpc_window(W_start, window["rainfall_cm"].tolist(),
                                window["et_cm"].tolist(), window["irradiance_index"].tolist(), cfg)
     plan_days = list(range(day_number, day_number + len(window)))
+
+    if result["status"] != "optimal":
+        # Heavy rain within this window breaches the ceiling with no pumping --
+        # genuinely infeasible (pumps can't drain), same case the main season
+        # simulation already handles. Show zero pumping rather than crash.
+        n = len(window)
+        return {"plan_days": plan_days, "Q_diesel": np.zeros(n), "Q_solar": np.zeros(n)}
+
     return {"plan_days": plan_days, "Q_diesel": result["Q_diesel"], "Q_solar": result["Q_solar"]}
 
 
