@@ -111,51 +111,6 @@ TRANSLATIONS = {
         "multi_year_table_title": "Resulta sa {n} Taon",
         "multi_year_avg": "Average sa lahat ng taon",
     },
-    "Cebuano (unverified)": {
-        "title": "Project O.A.S.I.S.",
-        "subtitle": "Optimized Alternative Saturating Irrigation System -- Rehiyon sa Davao",
-        "data_source": "Gigikanan sa Datos",
-        "weather_data": "Datos sa panahon:",
-        "mock": "Mock (demo)",
-        "real": "Tinuod (NASA POWER)",
-        "season_preset": "Preset sa season:",
-        "preset_custom": "Custom nga petsa",
-        "preset_dry": "Ting-init (Dis-Abr)",
-        "preset_wet": "Ting-ulan (Hun-Okt)",
-        "multi_year": "Itandi sa daghang tuig",
-        "num_years": "Ihap sa tuig nga itandi",
-        "field_params": "Setting sa Uma ug Pump",
-        "paddy_area": "Gidak-on sa palayan (m2)",
-        "diesel_capacity": "Kapasidad sa diesel pump (m3/oras)",
-        "diesel_hours": "Max oras/adlaw sa diesel pump",
-        "solar_capacity": "Kapasidad sa solar pump (m3/oras)",
-        "solar_hours": "Oras/adlaw sa solar pump",
-        "diesel_price": "Presyo sa diesel (PHP/L)",
-        "view_mode": "Mode sa view",
-        "simple_view": "Simple (Para sa Mag-uuma)",
-        "detailed_view": "Detalyado (Para sa Tigdukiduki)",
-        "fallback_warning": "Gipakita ang MOCK data -- napakyas ang pagkuha sa tinuod nga datos gikan sa NASA POWER.",
-        "last_updated": "Katapusang gikuha ang datos",
-        "date_range": "Sakup sa petsa",
-        "diesel_cost": "Gasto sa Diesel",
-        "savings": "Naluwas",
-        "solar_used": "Solar nga Nagamit",
-        "co2e_avoided": "CO2e Nalikayan",
-        "water_level_chart": "Lebel sa Tubig sa Palayan vs AWD Safe Zone",
-        "energy_mix_chart": "Adlaw-adlaw nga Solar vs Diesel",
-        "lookahead_chart": "MPC 7-ka-Adlaw nga Plano",
-        "lookahead_caption": "Pilia ang adlaw aron makita ang plano karon ug sa sunod semana.",
-        "select_day": "Pilia ang adlaw",
-        "committed_today": "Gikumpirmar karon",
-        "download_csv": "I-download ang datos (CSV)",
-        "footer": "Diesel CO2 factor: {factor} kg/L (combustion ra). Gigikanan sa datos: {source}.",
-        "simple_today_msg": "Plano Karong Adlawa (Adlaw {day})",
-        "simple_solar_line": "Gamita ang SOLAR pump sulod sa mga {hours:.1f} oras",
-        "simple_diesel_line": "Gamita ang DIESEL pump sulod sa mga {hours:.1f} oras",
-        "simple_none_line": "Walay kinahanglan nga pump karon -- igo na ang ulan",
-        "multi_year_table_title": "Resulta sa {n} ka Tuig",
-        "multi_year_avg": "Average sa tanan nga tuig",
-    },
 }
 
 # ------------------------------------------
@@ -164,8 +119,6 @@ TRANSLATIONS = {
 with st.sidebar:
     language = st.selectbox("Language / Wika / Pinulongan", list(TRANSLATIONS.keys()))
     T = TRANSLATIONS[language]
-    if language == "Cebuano (unverified)":
-        st.caption("⚠️ Machine-assisted translation, not yet reviewed by a native speaker.")
 
     st.header(T["data_source"])
     data_source = st.radio(T["weather_data"], [T["mock"], T["real"]])
